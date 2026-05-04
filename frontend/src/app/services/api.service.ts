@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { environment } from "../../environments/environment";
 
 export interface ChatRequest {
   message: string;
@@ -43,7 +44,7 @@ export interface QuizEvaluateResponse {
 
 @Injectable({ providedIn: "root" })
 export class ApiService {
-  private readonly apiBase = "http://localhost:8000/api";
+  private readonly apiBase = environment.apiUrl;
 
   constructor(private readonly http: HttpClient) {}
 
