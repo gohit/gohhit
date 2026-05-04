@@ -51,6 +51,8 @@ Frontend runs on `http://localhost:4200`.
 
 ### 1) Backend on Render
 
+Python version is pinned for Render via **`backend/.python-version`** (Render-supported) and **`PYTHON_VERSION`** in **`render.yaml`**. Heroku-style **`runtime.txt`** is not used (Render ignores it).
+
 1. Push this repo to GitHub (already done if you use Render Git integration).
 2. [Render](https://render.com) → **New** → **Blueprint** → pick repo → select `render.yaml`, or **Web Service** manually:
    - **Root Directory**: `backend`
