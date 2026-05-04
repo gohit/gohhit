@@ -1,0 +1,18 @@
+# Deploy backend on Render: New → Blueprint → connect repo → select this file.
+# After deploy, set CORS_ORIGINS to your frontend URL(s), comma-separated.
+
+services:
+  - type: web
+    name: gohhit-mathbuddy-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      # Pin Python for predictable deps (also supported: backend/.python-version — Render ignores Heroku runtime.txt)
+      - key: PYTHON_VERSION
+        value: "3.11.8"
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      # Add secrets in Render dashboard: OPENAI_API_KEY, CORS_ORIGINS (your live site URLs)
