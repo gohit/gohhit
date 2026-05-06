@@ -6,21 +6,26 @@ import { Component } from "@angular/core";
     <section class="card">
       <h1>About</h1>
       <p>
-        MathBuddy is a portfolio project built with Angular and FastAPI. It demonstrates
-        a practical GenAI + full-stack workflow.
+        Hi, I’m <strong>Mohit Lalwani</strong> — from <strong>Jaipur, Rajasthan</strong>.
+        I come from a business family and I’m currently working as a <strong>Software Engineer</strong>.
       </p>
-      <h3>Tech stack</h3>
+
+      <p>
+        I’m always excited about new things and eager to learn. I like building simple,
+        practical products and improving them step-by-step.
+      </p>
+
+      <h3>What you’ll find here</h3>
       <ul>
-        <li>Frontend: Angular</li>
-        <li>Backend: Python FastAPI</li>
-        <li>Model: OpenAI cost-friendly default model</li>
+        <li>A lightweight personal website base for long-term use</li>
+        <li>Small projects I build and ship quickly</li>
       </ul>
-      <h3>Safety limits</h3>
-      <ul>
-        <li>Supports only primary maths for grade 1-3</li>
-        <li>Rejects non-math questions politely</li>
-        <li>Uses simple, child-friendly language</li>
-      </ul>
+
+      <h3>Featured project: MathBuddy</h3>
+      <p>
+        MathBuddy is a small GenAI + full-stack project that helps with primary maths (grade 1-3)
+        through a chat tutor and quick quizzes.
+      </p>
     </section>
   `,
 })
