@@ -15,6 +15,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
         <nav>
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
           <a routerLink="/about" routerLinkActive="active">About</a>
+          <a routerLink="/contact" routerLinkActive="active">Contact</a>
           <a routerLink="/projects/mathbuddy/chat" routerLinkActive="active">MathBuddy</a>
         </nav>
       </div>
@@ -22,6 +23,19 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
     <main class="container main">
       <router-outlet />
     </main>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <div class="footer-brand">GOHHIT</div>
+          <div class="footer-sub">Built by Mohit Lalwani</div>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:mohit.1211ml@gmail.com">mohit.1211ml&#64;gmail.com</a>
+          <a href="https://github.com/gohit" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/mohit-lalwani-199a4914b/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
   `,
   styles: [
     `
@@ -65,6 +79,39 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
       }
       .main {
         padding: 1.1rem 0 2rem;
+      }
+      .site-footer {
+        margin-top: 2rem;
+        padding: 1.5rem 0;
+        border-top: 1px solid #e5e7eb;
+        background: #ffffff;
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .footer-brand {
+        font-weight: 700;
+      }
+      .footer-sub {
+        color: #6b7280;
+        font-size: 0.92rem;
+        margin-top: 0.2rem;
+      }
+      .footer-links {
+        display: flex;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+      }
+      .footer-links a {
+        color: #1d4ed8;
+        text-decoration: none;
+      }
+      .footer-links a:hover {
+        text-decoration: underline;
       }
     `,
   ],

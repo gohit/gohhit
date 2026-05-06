@@ -14,6 +14,7 @@ import { RouterLink } from "@angular/router";
       <div class="actions">
         <a routerLink="/projects/mathbuddy/chat"><button>Open MathBuddy Chat</button></a>
         <a routerLink="/projects/mathbuddy/quiz"><button class="ghost">Open MathBuddy Quiz</button></a>
+        <a routerLink="/contact"><button class="ghost2">Contact</button></a>
       </div>
     </section>
 
@@ -40,6 +41,9 @@ import { RouterLink } from "@angular/router";
       }
       .ghost {
         background: #4b5563;
+      }
+      .ghost2 {
+        background: #111827;
       }
       .projects {
         margin-top: 1rem;
