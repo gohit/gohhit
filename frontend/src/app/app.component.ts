@@ -8,7 +8,10 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
   template: `
     <header class="site-header">
       <div class="container nav">
-        <a routerLink="/" class="brand">gohhit.com</a>
+        <a routerLink="/" class="brand">
+          <img class="logo" src="/assets/logo.svg" alt="gohhit logo" />
+          <span>GOHHIT</span>
+        </a>
         <nav>
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
           <a routerLink="/about" routerLinkActive="active">About</a>
@@ -36,6 +39,14 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
         text-decoration: none;
         color: #111827;
         font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+      }
+      .logo {
+        width: 28px;
+        height: 28px;
+        display: block;
       }
       nav {
         display: flex;
