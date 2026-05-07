@@ -68,8 +68,12 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
   styles: [
     `
       .site-header {
-        background: #ffffff;
-        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(10, 16, 30, 0.55);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
       }
       .nav {
         height: 64px;
@@ -79,7 +83,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
       }
       .brand {
         text-decoration: none;
-        color: #111827;
+        color: rgba(255, 255, 255, 0.92);
         font-weight: 700;
         display: inline-flex;
         align-items: center;
@@ -96,23 +100,24 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
       }
       nav a {
         text-decoration: none;
-        color: #374151;
+        color: rgba(255, 255, 255, 0.78);
         padding: 0.4rem 0.55rem;
         border-radius: 6px;
       }
       nav a.active,
       nav a:hover {
-        background: #eff6ff;
-        color: #1d4ed8;
+        background: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.92);
       }
       .main {
-        padding: 1.1rem 0 2rem;
+        padding: 1.2rem 0 2rem;
       }
       .site-footer {
         margin-top: 2rem;
         padding: 1.5rem 0;
-        border-top: 1px solid #e5e7eb;
-        background: #ffffff;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(10, 16, 30, 0.35);
+        backdrop-filter: blur(12px);
       }
       .footer-inner {
         display: flex;
@@ -125,7 +130,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
         font-weight: 700;
       }
       .footer-sub {
-        color: #6b7280;
+        color: rgba(255, 255, 255, 0.62);
         font-size: 0.92rem;
         margin-top: 0.2rem;
       }
@@ -139,9 +144,9 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
         width: 40px;
         height: 40px;
         border-radius: 10px;
-        border: 1px solid #e5e7eb;
-        background: #ffffff;
-        color: #111827;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.9);
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -154,13 +159,22 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
         display: block;
       }
       .icon-link:hover {
-        background: #f3f4f6;
-        border-color: #d1d5db;
+        background: rgba(255, 255, 255, 0.11);
+        border-color: rgba(255, 255, 255, 0.22);
         transform: translateY(-1px);
       }
       .icon-link:focus-visible {
-        outline: 2px solid #2563eb;
+        outline: 2px solid rgba(124, 58, 237, 0.9);
         outline-offset: 2px;
+      }
+      @media (max-width: 640px) {
+        .nav {
+          height: auto;
+          padding: 0.75rem 0;
+          gap: 0.8rem;
+          flex-direction: column;
+          align-items: flex-start;
+        }
       }
     `,
   ],

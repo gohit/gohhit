@@ -14,79 +14,150 @@ interface ChatMessage {
   imports: [FormsModule, NgFor, NgIf],
   template: `
     <section class="card">
-      <h1>MathBuddy Chat</h1>
-      <p>Ask primary maths questions (Grade 1-3 only).</p>
+      <div class="top">
+        <div>
+          <span class="badge">MathBuddy</span>
+          <h1 class="title">Chat Tutor</h1>
+          <p class="sub">Ask primary maths questions (Grade 1–3 only).</p>
+        </div>
+        <div class="controls">
+          <div class="field">
+            <label>Grade</label>
+            <select [(ngModel)]="grade">
+              <option [value]="1">Grade 1</option>
+              <option [value]="2">Grade 2</option>
+              <option [value]="3">Grade 3</option>
+            </select>
+          </div>
 
-      <div class="controls">
-        <label>
-          Grade
-          <select [(ngModel)]="grade">
-            <option [value]="1">Grade 1</option>
-            <option [value]="2">Grade 2</option>
-            <option [value]="3">Grade 3</option>
-          </select>
-        </label>
-
-        <label class="checkbox">
-          <input type="checkbox" [(ngModel)]="showSteps" />
-          Show step-by-step
-        </label>
-      </div>
-
-      <div class="chat-box">
-        <div *ngFor="let message of messages" [class.user]="message.role === 'user'" class="bubble">
-          <strong>{{ message.role === "user" ? "You" : "MathBuddy" }}:</strong>
-          <span>{{ message.content }}</span>
+          <label class="checkbox">
+            <input type="checkbox" [(ngModel)]="showSteps" />
+            Show steps
+          </label>
         </div>
       </div>
 
-      <textarea [(ngModel)]="userInput" rows="3" placeholder="Example: If I have 8 apples and eat 3, how many are left?"></textarea>
-      <div class="actions">
-        <button (click)="sendMessage()" [disabled]="isLoading || !userInput.trim()">Send</button>
+      <div class="chat-box" id="chatBox">
+        <div
+          *ngFor="let message of messages"
+          class="msg"
+          [class.me]="message.role === 'user'"
+          [class.them]="message.role !== 'user'"
+        >
+          <div class="bubble">
+            <div class="meta">{{ message.role === "user" ? "You" : "MathBuddy" }}</div>
+            <div class="text">{{ message.content }}</div>
+          </div>
+        </div>
+        <div *ngIf="isLoading" class="typing">Thinking…</div>
       </div>
+
+      <div class="composer">
+        <textarea
+          [(ngModel)]="userInput"
+          rows="2"
+          placeholder="Example: If I have 8 apples and eat 3, how many are left?"
+          (keydown.enter)="onEnter($event)"
+        ></textarea>
+        <button class="btn" (click)="sendMessage()" [disabled]="isLoading || !userInput.trim()">Send</button>
+      </div>
+
       <p *ngIf="error" class="error">{{ error }}</p>
     </section>
   `,
   styles: [
     `
-      .controls {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 0.8rem;
+      .title {
+        margin: 0.5rem 0 0.2rem;
+      }
+      .sub {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.72);
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: flex-start;
         margin-bottom: 1rem;
       }
-      .checkbox {
+      .controls {
         display: flex;
+        gap: 0.8rem;
+        align-items: end;
+        flex-wrap: wrap;
+      }
+      .checkbox {
+        display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.55rem;
+        padding: 0.55rem 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        color: rgba(255, 255, 255, 0.82);
+        height: 44px;
       }
       .chat-box {
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 0.8rem;
-        margin-bottom: 0.7rem;
-        background: #f9fafb;
-        max-height: 340px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 16px;
+        padding: 0.9rem;
+        margin-bottom: 0.8rem;
+        background: rgba(255, 255, 255, 0.05);
+        max-height: 420px;
         overflow: auto;
       }
+      .msg {
+        display: flex;
+        margin-bottom: 0.7rem;
+      }
+      .msg.me {
+        justify-content: flex-end;
+      }
       .bubble {
-        margin-bottom: 0.8rem;
+        width: min(680px, 100%);
+        border-radius: 16px;
+        padding: 0.75rem 0.85rem;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.07);
       }
-      .user {
-        color: #1d4ed8;
+      .msg.me .bubble {
+        border-color: rgba(124, 58, 237, 0.35);
+        background: rgba(124, 58, 237, 0.14);
       }
-      .actions {
-        margin-top: 0.6rem;
+      .meta {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 0.2rem;
+      }
+      .text {
+        white-space: pre-wrap;
+        color: rgba(255, 255, 255, 0.92);
+      }
+      .typing {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.95rem;
+        padding: 0.3rem 0.1rem;
+      }
+      .composer {
+        display: flex;
+        gap: 0.7rem;
+        align-items: end;
+      }
+      .composer textarea {
+        min-height: 48px;
       }
       .error {
-        color: #b91c1c;
+        color: #fecaca;
+        margin-top: 0.8rem;
       }
     `,
   ],
 })
 export class ChatComponent {
   grade = 1;
-  showSteps = true;
+  showSteps = false;
   userInput = "";
   isLoading = false;
   error = "";
@@ -95,6 +166,13 @@ export class ChatComponent {
   ];
 
   constructor(private readonly api: ApiService) {}
+
+  onEnter(ev: Event): void {
+    const kev = ev as KeyboardEvent;
+    if (kev.shiftKey) return;
+    kev.preventDefault();
+    this.sendMessage();
+  }
 
   sendMessage(): void {
     const text = this.userInput.trim();

@@ -9,30 +9,31 @@ import { environment } from "../../environments/environment";
   imports: [FormsModule, NgIf],
   template: `
     <section class="card">
-      <h1>Contact</h1>
+      <span class="badge">Contact</span>
+      <h1>Say hello</h1>
       <p>
         Have a question, feedback, or an idea? Send me a message — I’m always open to learning and improving.
       </p>
 
       <div class="grid">
-        <label>
-          Name
+        <div class="field">
+          <label>Name</label>
           <input [(ngModel)]="name" placeholder="Your name" />
-        </label>
+        </div>
 
-        <label>
-          Email
+        <div class="field">
+          <label>Email</label>
           <input [(ngModel)]="email" placeholder="you@example.com" />
-        </label>
+        </div>
       </div>
 
-      <label>
-        Message
+      <div class="field">
+        <label>Message</label>
         <textarea [(ngModel)]="message" rows="6" placeholder="Write your message..."></textarea>
-      </label>
+      </div>
 
       <div class="actions">
-        <button (click)="submit()" [disabled]="loading || !canSubmit()">Send</button>
+        <button class="btn" (click)="submit()" [disabled]="loading || !canSubmit()">Send</button>
         <a class="link" href="mailto:mohit.1211ml@gmail.com">Or email directly</a>
       </div>
 
@@ -55,18 +56,18 @@ import { environment } from "../../environments/environment";
         flex-wrap: wrap;
       }
       .link {
-        color: #1d4ed8;
+        color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
       }
       .link:hover {
         text-decoration: underline;
       }
       .status {
-        color: #166534;
+        color: #86efac;
         margin-top: 0.8rem;
       }
       .error {
-        color: #b91c1c;
+        color: #fecaca;
         margin-top: 0.8rem;
       }
     `,
