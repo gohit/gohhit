@@ -1,5 +1,6 @@
 :root {
-  color-scheme: light;
+  /* Matches dark UI so native selects/options/checkboxes render with readable contrast (esp. Windows). */
+  color-scheme: dark;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Apple Color Emoji",
     "Segoe UI Emoji";
 
@@ -149,6 +150,17 @@ textarea:focus,
 select:focus {
   border-color: rgba(124, 58, 237, 0.6);
   box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+}
+
+select {
+  cursor: pointer;
+  appearance: auto;
+}
+
+select option,
+select optgroup {
+  background-color: #0f1b33;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 a {

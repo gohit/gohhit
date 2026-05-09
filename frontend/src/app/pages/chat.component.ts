@@ -32,7 +32,7 @@ interface ChatMessage {
 
           <label class="checkbox">
             <input type="checkbox" [(ngModel)]="showSteps" />
-            Show steps
+            <span class="checkbox-label">Show steps</span>
           </label>
         </div>
       </div>
@@ -88,16 +88,24 @@ interface ChatMessage {
         align-items: end;
         flex-wrap: wrap;
       }
+      .controls .field select {
+        min-width: 9.5rem;
+        background-color: rgba(15, 27, 51, 0.92);
+      }
       .checkbox {
         display: inline-flex;
         align-items: center;
         gap: 0.55rem;
-        padding: 0.55rem 0.8rem;
+        padding: 0.55rem 0.85rem;
         border: 1px solid rgba(255, 255, 255, 0.16);
         background: rgba(255, 255, 255, 0.06);
         border-radius: 12px;
         color: rgba(255, 255, 255, 0.82);
-        height: 44px;
+        min-height: 44px;
+      }
+      .checkbox-label {
+        white-space: nowrap;
+        line-height: 1.2;
       }
       .chat-box {
         border: 1px solid rgba(255, 255, 255, 0.14);
